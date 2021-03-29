@@ -6,7 +6,7 @@ import ImageBlurLoading from 'react-native-image-blur-loading';
 
 const image = require('../assets/background2.png');
 
-export default function CardComponent({ navigation }) {
+export default function CardComponent({ navigation, content }) {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -25,13 +25,13 @@ export default function CardComponent({ navigation }) {
         </CardItem>
         <CardItem style={{ marginTop: -10 }}>
           <Grid>
-            <Col>
+            <Col size={9}>
               <Text numberOfLines={1} style={styles.title}>
-                오늘의 일기 제목
+                {content.title}
               </Text>
-              <Text style={[styles.grey, styles.writer]}>2021.03.29</Text>
+              <Text style={[styles.grey, styles.writer]}>{content.date}</Text>
             </Col>
-            {/* <Col size={2}>
+            <Col size={2}>
               <Grid>
                 <Col>
                   <Icon name="chatbox-outline" style={styles.grey} />
@@ -40,7 +40,7 @@ export default function CardComponent({ navigation }) {
                   <Icon name="heart-outline" style={styles.grey} />
                 </Col>
               </Grid>
-            </Col> */}
+            </Col>
           </Grid>
         </CardItem>
       </Card>

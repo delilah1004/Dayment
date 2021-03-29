@@ -1,35 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { Container } from 'native-base';
+import { Container, Content } from 'native-base';
 
 import HeaderComponent from '../components/HeaderComponent';
 import CardComponent from '../components/CardComponent';
-// import { firebase_db } from '../config/key';
-
-const diary = db.collection('diary');
+import Loading from './Loading';
+import { getData } from '../config/firebaseFunctions';
 
 export default function MainPage({ navigation }) {
+  const [state, setState] = useState([]);
+  const [ready, setReady] = useState(true);
+
   useEffect(() => {
     const unsubscrbie = navigation.addListener('focus', (e) => {
       console.log('메인페이지 접속중');
     });
-    // firebase_db
-    //   .ref('/tip')
-    //   .once('value')
-    //   .then((snapshot) => {
-    //     let tip = snapshot.val();
-    //   });
+    download();
     return unsubscrbie;
   }, [navigation]);
 
-  return (
+  const download = async () => {
+    console.log('업로드 준비중!');
+
+    const result = await getData();
+
+    console.log(result);
+
+    setState(result);
+    setReady(false);
+  };
+
+  return ready ? (
+    <Loading />
+  ) : (
     <Container>
       <HeaderComponent />
-      {diary.map((content, i) => {
-        return (
-          <CardComponent content={content} key={i} navigation={navigation} />
-        );
-      })}
+      <Content>
+        {state.map((content, i) => {
+          return (
+            <CardComponent content={content} key={i} navigation={navigation} />
+          );
+        })}
+      </Content>
     </Container>
   );
 }

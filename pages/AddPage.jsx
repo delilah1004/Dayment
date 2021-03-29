@@ -32,12 +32,24 @@ export default function AddPage({ navigation }) {
 
   const upload = async () => {
     console.log('업로드 준비중!');
+
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
     let date = new Date();
+
+    console.log(date);
+    let year = date.getFullYear() + '년 ';
+    let month = date.getMonth() + 1 + '월 ';
+    let date1 = date.getDate() + '일 ';
+    let day = days[date.getDay()] + '요일 ';
+    let hour = date.getHours() + '시 ';
+    let min = date.getMinutes() + '분';
+
     let data = {
+      key: date.getTime(),
       title: title,
       desc: content,
       image: image,
-      date: date.getTime(),
+      date: year + month + date1 + day + hour + min,
     };
 
     let result = addDiary(data);
