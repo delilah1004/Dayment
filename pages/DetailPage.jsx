@@ -1,8 +1,15 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import { Container, Content } from 'native-base';
+import ImageBlurLoading from 'react-native-image-blur-loading';
 
-export default function DetailPage({ navigation }) {
+import 'firebase/firestore';
+export default function DetailPage({ navigation, route }) {
+  const content = route.params.content;
+
   useEffect(() => {
+    console.log('디테일페이지 접속중');
+
     navigation.setOptions({
       title: '디테일페이지',
       headerStyle: {
@@ -13,23 +20,49 @@ export default function DetailPage({ navigation }) {
       headerShown: true,
       headerBackTitleVisible: false,
     });
-    const unsubscrbie = navigation.addListener('focus', (e) => {
-      console.log('디테일페이지 접속중');
-    });
-    return unsubscrbie;
-  }, [navigation]);
+  }, []);
 
   return (
-    <View style={styles.contianer}>
-      <Text> DetailPage </Text>
-    </View>
+    <Container>
+      <Content
+        contentContainerStyle={{
+          alignItems: 'center',
+          marginTop: 20,
+        }}
+      >
+        <ImageBlurLoading
+          withIndicator
+          thumbnailSource={{ uri: content.image }}
+          source={{ uri: content.image }}
+          style={{ width: '90%', height: 200, borderRadius: 10 }}
+        />
+        <Text
+          style={{
+            fontSize: 25,
+            fontWeight: '700',
+            color: '#333',
+            alignSelf: 'flex-start',
+            marginLeft: 25,
+            marginTop: 20,
+          }}
+        >
+          {content.title}
+        </Text>
+        <Text
+          style={{
+            fontSize: 15,
+            fontWeight: '700',
+            color: 'grey',
+            alignSelf: 'flex-start',
+            marginLeft: 25,
+            marginTop: 20,
+          }}
+        >
+          {content.desc}
+        </Text>
+      </Content>
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  contianer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const styles = StyleSheet.create({});

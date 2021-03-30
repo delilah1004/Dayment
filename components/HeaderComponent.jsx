@@ -13,7 +13,7 @@ export default function HeaderComponent() {
         </Button>
       </Left>
       <Right>
-        <Icon name="ellipsis-horizontal" style={{ color: 'deeppink' }} />
+        {/* <Icon name="ellipsis-horizontal" style={{ color: 'deeppink' }} /> */}
       </Right>
     </Header>
   );

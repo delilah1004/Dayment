@@ -24,7 +24,7 @@ export default function MainPage({ navigation }) {
 
     const result = await getData();
 
-    console.log(result);
+    // console.log(result);
 
     setState(result);
     setReady(false);

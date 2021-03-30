@@ -4,13 +4,11 @@ import { Col, Grid } from 'react-native-easy-grid';
 import { Icon, Text, Card, CardItem } from 'native-base';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 
-const image = require('../assets/background2.png');
-
 export default function CardComponent({ navigation, content }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailPage');
+        navigation.navigate('DetailPage', { content });
       }}
       style={styles.container}
     >
@@ -18,8 +16,8 @@ export default function CardComponent({ navigation, content }) {
         <CardItem transparent>
           <ImageBlurLoading
             withIndicator
-            thumbnailSource={image}
-            source={image}
+            thumbnailSource={{ uri: content.image }}
+            source={{ uri: content.image }}
             style={styles.image}
           />
         </CardItem>

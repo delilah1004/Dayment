@@ -29,3 +29,17 @@ export async function getData() {
     return false;
   }
 }
+
+export async function imageUpload(blob, date) {
+  const storageRef = firebase
+    .storage()
+    .ref()
+    .child('diary/' + date);
+  const snapshot = await storageRef.put(blob);
+  const imageURL = await snapshot.ref.getDownloadURL();
+
+  // blob 메모리 해제
+  blob.close();
+
+  return imageURL;
+}
