@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import { Header, Left, Body, Right, Button } from 'native-base';
+import { Header, Left, Body, Right, Button, Title } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 
 const logo = require('../assets/logo.png');
@@ -8,7 +8,16 @@ const logo = require('../assets/logo.png');
 export default function HeaderComponentWithBack() {
   return (
     <Header style={styles.header} transparent>
-      <Left>
+      <Button transparent>
+        <Ionicons name="chevron-back" color="grey" size={26} />
+      </Button>
+      <Button transparent>
+        <Image source={logo} style={styles.logoImage} />
+      </Button>
+      <Button transparent>
+        <Ionicons name={'chevron-back'} color="transparent" size={26} />
+      </Button>
+      {/* <Left>
         <Button transparent>
           <Ionicons name={'chevron-back'} color="grey" size={26} />
         </Button>
@@ -20,17 +29,16 @@ export default function HeaderComponentWithBack() {
       </Body>
       <Right>
         <Button transparent></Button>
-      </Right>
+      </Right> */}
     </Header>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    marginVertical: 5,
     borderBottomWidth: 1.5,
     borderBottomColor: '#EEE',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   logoImage: {
     width: 100,

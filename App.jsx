@@ -15,6 +15,7 @@ import * as firebase from 'firebase';
 import apiKeys from './config/key';
 
 export default function App() {
+  console.disableYellowBox = true;
   const [ready, setReady] = useState(true);
 
   //파이어베이스 라이브러리 준비

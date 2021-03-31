@@ -24,8 +24,6 @@ export default function MyPage({ navigation }) {
 
     const result = await getData();
 
-    // console.log(result);
-
     setState(result);
     setReady(false);
   };
