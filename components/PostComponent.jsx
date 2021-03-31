@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  ImageBackground,
-  Platform,
-} from 'react-native';
+import { Dimensions, StyleSheet, View, ImageBackground } from 'react-native';
 import { Text, Container, Grid, Content } from 'native-base';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 
@@ -16,29 +10,32 @@ const imageWidth = (Dimensions.get('window').width / 3) * 2;
 export default function PostComponent({ content }) {
   return (
     <Container>
-      <ImageBackground source={dot} style={styles.background}></ImageBackground>
+      <ImageBackground source={dot} style={styles.background} />
       <Content>
         {/* 제목 */}
-        <Grid style={{ alignSelf: 'center' }}>
-          <View style={[styles.shadowBox, { borderRadius: 10 }]}>
-            <View
-              style={{
-                borderRadius: 10,
-                borderColor: 'red',
-                borderWidth: 2,
-                paddingHorizontal: 10,
-                paddingVertical: 5,
-              }}
-            >
-              <Text numberOfLines={1} style={styles.title}>
-                {content.title}
-              </Text>
-            </View>
+        <View
+          style={[
+            styles.shadowBox,
+            { marginTop: 20, borderRadius: 10, alignSelf: 'center' },
+          ]}
+        >
+          <View
+            style={{
+              borderRadius: 10,
+              borderColor: 'red',
+              borderWidth: 2,
+              paddingHorizontal: 10,
+              paddingVertical: 5,
+            }}
+          >
+            <Text numberOfLines={1} style={styles.title}>
+              {content.title}
+            </Text>
           </View>
-        </Grid>
+        </View>
         {/* End of 제목 */}
 
-        <View style={[{ width: '80%' }, styles.shadowBox]}>
+        <View style={styles.container}>
           {/* 사진 */}
           <View style={styles.shadowBox}>
             <ImageBlurLoading
@@ -51,21 +48,22 @@ export default function PostComponent({ content }) {
           {/* End of 사진 */}
 
           {/* 본문 */}
-          <View style={styles.shadowBox}>
+          <View style={[{ borderRadius: 10 }, styles.shadowBox]}>
             <View
               style={{
                 width: imageWidth,
-                height: imageWidth,
+                minHeight: imageWidth / 2,
                 borderColor: 'black',
                 borderWidth: 2,
+                borderRadius: 10,
                 padding: 5,
+                marginVertical: 5,
               }}
             >
-              <Text style={styles.desc}>{content.desc}</Text>
-              <Text style={[styles.grey, styles.date]}>{content.date}</Text>
+              {/* Desc */}
+              <Text style={[styles.desc]}>{content.desc}</Text>
             </View>
-
-            {/* <View style={styles.post}></View> */}
+            <Text style={[styles.grey, styles.date]}>{content.date}</Text>
           </View>
           {/* End of 본문 */}
         </View>
@@ -81,13 +79,20 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
     height: '100%',
+    opacity: 0.7,
   },
   image: { width: imageWidth, height: imageWidth },
   shadowBox: {
     backgroundColor: 'white',
     padding: 5,
-    marginVertical: 10,
+    margin: 10,
     elevation: 10,
+  },
+  container: {
+    backgroundColor: 'white',
+    padding: 5,
+    marginVertical: 10,
+    elevation: 5,
     alignSelf: 'center',
   },
   title: {
@@ -97,12 +102,13 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontSize: 13,
+    textDecorationLine: 'underline',
     marginVertical: 5,
   },
   date: {
     fontSize: 10,
     color: 'grey',
-    marginVertical: 5,
+    margin: 5,
   },
   grey: { color: 'grey' },
 });
