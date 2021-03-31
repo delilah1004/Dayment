@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import MainPage from '../pages/MainPage';
 import AddPage from '../pages/AddPage';
+import MyPage from '../pages/MyPage';
 
 const Tabs = createBottomTabNavigator();
 
@@ -17,9 +18,11 @@ const TabNavigator = ({ navigation }) => {
           let iconName = Platform.OS === 'ios' ? 'ios-' : 'md-';
 
           if (route.name === 'MainPage') {
-            iconName += 'apps-outline';
+            iconName += 'list';
           } else if (route.name === 'AddPage') {
             iconName += 'add-circle-outline';
+          } else if (route.name === 'MyPage') {
+            iconName += 'apps-outline';
           }
           return (
             <Ionicons
@@ -42,6 +45,7 @@ const TabNavigator = ({ navigation }) => {
     >
       <Tabs.Screen name="MainPage" component={MainPage} />
       <Tabs.Screen name="AddPage" component={AddPage} />
+      <Tabs.Screen name="MyPage" component={MyPage} />
     </Tabs.Navigator>
   );
 };

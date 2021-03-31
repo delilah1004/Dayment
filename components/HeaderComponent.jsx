@@ -7,14 +7,9 @@ const logo = require('../assets/logo.png');
 export default function HeaderComponent() {
   return (
     <Header style={styles.header} transparent>
-      <Left>
-        <Button transparent>
-          <Image source={logo} style={styles.logoImage} />
-        </Button>
-      </Left>
-      <Right>
-        {/* <Icon name="ellipsis-horizontal" style={{ color: 'deeppink' }} /> */}
-      </Right>
+      <Button transparent>
+        <Image source={logo} style={styles.logoImage} />
+      </Button>
     </Header>
   );
 }
@@ -22,6 +17,8 @@ export default function HeaderComponent() {
 const styles = StyleSheet.create({
   header: {
     marginVertical: 5,
+    borderBottomWidth: 1.5,
+    borderBottomColor: '#EEE',
     justifyContent: 'center',
   },
   logoImage: {

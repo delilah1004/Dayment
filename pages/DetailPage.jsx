@@ -4,6 +4,9 @@ import { Container, Content } from 'native-base';
 import ImageBlurLoading from 'react-native-image-blur-loading';
 
 import 'firebase/firestore';
+import PostComponent from '../components/PostComponent';
+import HeaderComponent from '../components/HeaderComponent';
+import HeaderComponentWithBack from '../components/HeaderComponentWithBack';
 export default function DetailPage({ navigation, route }) {
   const content = route.params.content;
 
@@ -24,42 +27,14 @@ export default function DetailPage({ navigation, route }) {
 
   return (
     <Container>
+      <HeaderComponentWithBack />
       <Content
         contentContainerStyle={{
           alignItems: 'center',
           marginTop: 20,
         }}
       >
-        <ImageBlurLoading
-          withIndicator
-          thumbnailSource={{ uri: content.image }}
-          source={{ uri: content.image }}
-          style={{ width: '90%', height: 200, borderRadius: 10 }}
-        />
-        <Text
-          style={{
-            fontSize: 25,
-            fontWeight: '700',
-            color: '#333',
-            alignSelf: 'flex-start',
-            marginLeft: 25,
-            marginTop: 20,
-          }}
-        >
-          {content.title}
-        </Text>
-        <Text
-          style={{
-            fontSize: 15,
-            fontWeight: '700',
-            color: 'grey',
-            alignSelf: 'flex-start',
-            marginLeft: 25,
-            marginTop: 20,
-          }}
-        >
-          {content.desc}
-        </Text>
+        <PostComponent content={content} navigation={navigation} />
       </Content>
     </Container>
   );
