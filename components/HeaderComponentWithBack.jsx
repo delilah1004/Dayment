@@ -5,10 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 const logo = require('../assets/logo.png');
 
-export default function HeaderComponentWithBack() {
+export default function HeaderComponentWithBack({ navigation }) {
   return (
     <Header style={styles.header} transparent>
-      <Button transparent>
+      <Button transparent onPress={() => navigation.goBack()}>
         <Ionicons name="chevron-back" color="grey" size={26} />
       </Button>
       <Button transparent>
@@ -17,26 +17,14 @@ export default function HeaderComponentWithBack() {
       <Button transparent>
         <Ionicons name={'chevron-back'} color="transparent" size={26} />
       </Button>
-      {/* <Left>
-        <Button transparent>
-          <Ionicons name={'chevron-back'} color="grey" size={26} />
-        </Button>
-      </Left>
-      <Body>
-        <Button transparent>
-          <Image source={logo} style={styles.logoImage} />
-        </Button>
-      </Body>
-      <Right>
-        <Button transparent></Button>
-      </Right> */}
     </Header>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    borderBottomWidth: 1.5,
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
     borderBottomColor: '#EEE',
     justifyContent: 'space-between',
   },

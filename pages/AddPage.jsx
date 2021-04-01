@@ -113,7 +113,9 @@ export default function AddPage({ navigation }) {
   };
 
   const getImageURI = async (imageData) => {
+    console.log('이미지 세팅중');
     setImageURI(imageData.uri);
+    console.log(imageData.uri);
   };
 
   return (
@@ -123,7 +125,7 @@ export default function AddPage({ navigation }) {
       )}
       <HeaderComponent />
       <Content>
-        {imageURI == '' ? (
+        {imageURI == '' || imageURI == undefined ? (
           <Grid style={styles.imageUpload} onPress={() => pickImage()}>
             <Text style={styles.imageUploadPlus}>+</Text>
           </Grid>

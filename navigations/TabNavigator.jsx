@@ -38,7 +38,7 @@ const TabNavigator = ({ navigation }) => {
         style: {
           backgroundColor: '#fff',
           borderTopColor: '#eee',
-          height: 40,
+          height: 50,
           fontSize: 10,
         },
       }}
